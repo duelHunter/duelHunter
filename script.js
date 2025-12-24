@@ -1,18 +1,65 @@
+// System Loader Animation
+const systemLoader = document.getElementById('systemLoader');
+
+function initSystemLoader() {
+    // Hide loader after animation completes
+    setTimeout(() => {
+        systemLoader.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }, 2500);
+}
+
+// Typing Animation
+function typeWriter(element, text, speed = 100, callback) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            if (callback) callback();
+        }
+    }
+    
+    type();
+}
+
+// Initialize typing animation after loader
+function initTypingAnimation() {
+    const typingElement = document.getElementById('typingText');
+    const name = 'Lahiru Senarathna';
+    
+    if (typingElement) {
+        setTimeout(() => {
+            typeWriter(typingElement, name, 100);
+        }, 300);
+    }
+}
+
 // Mobile Navigation Toggle
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking on a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (hamburger) {
+            hamburger.classList.remove('active');
+        }
+        if (navMenu) {
+            navMenu.classList.remove('active');
+        }
     });
 });
 
@@ -23,10 +70,12 @@ let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (navbar) {
+        if (currentScroll > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     }
     
     lastScroll = currentScroll;
@@ -101,103 +150,123 @@ document.addEventListener('DOMContentLoaded', () => {
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Here you would typically send the form data to a server
-    // For now, we'll just show an alert and reset the form
-    console.log('Form submitted:', formData);
-    
-    // Show success message
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // In a real application, you would send this data to your backend:
-    // fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     alert('Message sent successfully!');
-    //     contactForm.reset();
-    // })
-    // .catch(error => {
-    //     alert('Error sending message. Please try again.');
-    // });
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+        
+        // Show terminal-like success message
+        console.log('%c[OK] Message received', 'color: #00ff00; font-weight: bold;');
+        console.log('%cForm Data:', 'color: #ff0000; font-weight: bold;', formData);
+        
+        // Create a terminal-style notification
+        showTerminalNotification('Message sent successfully!', 'success');
+        
+        // Reset form
+        contactForm.reset();
+    });
+}
 
-// Typing effect for hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
+// System notification
+function showTerminalNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = 'system-notification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #111111;
+        border: 1px solid #ff0000;
+        padding: 15px 20px;
+        color: #ff0000;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        z-index: 10000;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        animation: slideIn 0.3s ease;
+    `;
+    notification.textContent = `[${type === 'success' ? 'OK' : 'ERROR'}] ${message}`;
     
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS animations for notifications
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
     
-    type();
-}
-
-// Parallax effect for hero section (optional)
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(400px);
+            opacity: 0;
+        }
     }
-});
+`;
+document.head.appendChild(style);
 
 // Skill cards hover effect enhancement
 const skillCards = document.querySelectorAll('.skill-card');
 
 skillCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.05)';
+        this.style.transform = 'translateY(-10px)';
     });
     
     card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+        this.style.transform = 'translateY(0)';
     });
 });
 
-// Project cards image hover effect
+// Project cards hover effect
 const projectCards = document.querySelectorAll('.project-card');
 
 projectCards.forEach(card => {
-    const projectImage = card.querySelector('.project-image');
-    
     card.addEventListener('mouseenter', function() {
-        if (projectImage) {
-            projectImage.style.transform = 'scale(1.1)';
-            projectImage.style.transition = 'transform 0.3s ease';
-        }
+        this.style.transform = 'translateY(-5px)';
     });
     
     card.addEventListener('mouseleave', function() {
-        if (projectImage) {
-            projectImage.style.transform = 'scale(1)';
-        }
+        this.style.transform = 'translateY(0)';
     });
 });
 
-// Add loading animation
+
+// Initialize everything when page loads
 window.addEventListener('load', () => {
+    // Start system loader
+    initSystemLoader();
+    
+    // Initialize typing animation after loader
+    setTimeout(() => {
+        initTypingAnimation();
+    }, 2800);
+    
+    // Fade in body
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
@@ -206,5 +275,80 @@ window.addEventListener('load', () => {
 });
 
 // Console message
-console.log('%c👋 Hello! Welcome to my portfolio!', 'color: #6366f1; font-size: 20px; font-weight: bold;');
-console.log('%cBuilt with ❤️ by Lahiru Senarathna', 'color: #6b7280; font-size: 14px;');
+console.log('%c[SYSTEM] Access granted', 'color: #ff0000; font-size: 16px; font-weight: bold;');
+console.log('%cWelcome to the system. All protocols active.', 'color: #b0b0b0; font-size: 12px;');
+console.log('%cBuilt with security in mind by Lahiru Senarathna', 'color: #666666; font-size: 10px;');
+
+// Add glitch effect on hover for logo (optional enhancement)
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.addEventListener('mouseenter', function() {
+        this.style.animation = 'glitch 0.3s';
+    });
+    
+    logo.addEventListener('animationend', function() {
+        this.style.animation = '';
+    });
+}
+
+// Add glitch animation
+const glitchStyle = document.createElement('style');
+glitchStyle.textContent = `
+    @keyframes glitch {
+        0%, 100% {
+            transform: translate(0);
+        }
+        20% {
+            transform: translate(-2px, 2px);
+        }
+        40% {
+            transform: translate(-2px, -2px);
+        }
+        60% {
+            transform: translate(2px, 2px);
+        }
+        80% {
+            transform: translate(2px, -2px);
+        }
+    }
+`;
+document.head.appendChild(glitchStyle);
+
+// Add subtle scanline effect (optional)
+function createScanline() {
+    const scanline = document.createElement('div');
+    scanline.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: rgba(255, 0, 0, 0.1);
+        z-index: 9999;
+        pointer-events: none;
+        animation: scanline 8s linear infinite;
+    `;
+    document.body.appendChild(scanline);
+}
+
+// Scanline animation
+const scanlineStyle = document.createElement('style');
+scanlineStyle.textContent = `
+    @keyframes scanline {
+        0% {
+            top: 0;
+            opacity: 0.1;
+        }
+        50% {
+            opacity: 0.3;
+        }
+        100% {
+            top: 100vh;
+            opacity: 0.1;
+        }
+    }
+`;
+document.head.appendChild(scanlineStyle);
+
+// Initialize scanline effect
+createScanline();
