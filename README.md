@@ -53,6 +53,4 @@ I believe in continuous learning, experimenting with new technologies, and shari
 ### 👀 Profile Viewers
 
 <p align="left">
-  <img src="https://komarev.com/ghpvc/?username=duelhunter&label=Total%20profile%20views&color=0e75b6&style=for-the-badge" alt="Total profile views" />
-  <img src="https://hits.sh/github.com/duelhunter.svg?label=Unique%20visits&color=0e75b6&style=for-the-badge" alt="Visits" />
-</p>
+  <img src="https://komarev.com/ghpvc/?username=duelhunter&label=Total%20profile%20views&color=0e75b6&style=for-the-badge" alt="Total profile views" /></p>
