@@ -27,9 +27,20 @@ I believe in continuous learning, experimenting with new technologies, and shari
   <a href="https://fb.com/profile.php?id=100011263772662" target="_blank">
     <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="Facebook" height="30" width="40" />
   </a>
+  <a href="https://duelhunter.github.io" target="_blank">
+    <img align="center" src="https://cdn.simpleicons.org/githubpages/0e75b6" alt="Website" height="30" width="40" />
+  </a>
+  <a href="https://medium.com/@duelhunter" target="_blank">
+    <img align="center" src="https://cdn.simpleicons.org/medium/00AB6C" alt="Medium" height="30" width="40" />
+  </a>
+  <a href="mailto:99xdilshan@gmail.com">
+    <img align="center" src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail" height="30" width="40" />
+  </a>
 </p>
 
-📫 **Email:** 99xdilshan@gmail.com
+🌐 **Website:** [duelhunter.github.io](https://duelhunter.github.io)  
+✍️ **Medium:** [@duelhunter](https://medium.com/@duelhunter)  
+📫 **Email:** [99xdilshan@gmail.com](mailto:99xdilshan@gmail.com)
 
 ---
 
