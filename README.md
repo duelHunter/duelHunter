@@ -33,14 +33,6 @@ I believe in continuous learning, experimenting with new technologies, and shari
 
 ---
 
-### 📊 GitHub Statistics
-
-<p>
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=duelhunter&show_icons=true&locale=en" alt="GitHub statistics" />
-</p>
-
----
-
 <p align="center">
   <i>Learning, building, breaking things, and making them better. 🚀</i>
 </p>
