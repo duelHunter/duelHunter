@@ -36,10 +36,6 @@ I believe in continuous learning, experimenting with new technologies, and shari
 ### 📊 GitHub Statistics
 
 <p>
-  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=duelhunter&show_icons=true&locale=en&layout=compact" alt="Most used languages" />
-</p>
-
-<p>
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=duelhunter&show_icons=true&locale=en" alt="GitHub statistics" />
 </p>
 
